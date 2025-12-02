@@ -111,9 +111,9 @@ output: "Chain-of-thought + final answer"
 
 Executed using: **evaluate_sft_model.py**
 ```
-| Model | Accuracy |
-|--------|------------|
-| Zero-shot | 56.25% |
+| Model                | Accuracy   |
+|----------------------|------------|
+| Zero-shot            | 56.25%     |
 | LoRA SFT (Strategic) | **57.58%** |
 ```
 **Overall Gain:** +1.33%p
