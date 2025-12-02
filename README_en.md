@@ -147,7 +147,7 @@ Executed using: **evaluate_sft_model.py**
 
 ---
 
-# 🔁 9. Reproducibility
+# 9. Reproducibility
 
 To reproduce results:
 
