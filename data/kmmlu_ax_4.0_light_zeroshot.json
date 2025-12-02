@@ -1,0 +1,339 @@
+{
+  "model_id": "skt/A.X-4.0-Light",
+  "evaluation_date": "2025-10-26 16:51:55",
+  "time_elapsed": "1:58:05.672377",
+  "time_elapsed_seconds": 7085.67,
+  "experiment_config": {
+    "seed": 42,
+    "batch_size": 2,
+    "num_shots": 0,
+    "prompting_strategy": "zero_shot"
+  },
+  "summary": {
+    "overall_accuracy": 0.5625,
+    "correct_answers": 19705,
+    "total_questions": 35030,
+    "category_accuracy": {
+      "Applied Science": 0.5358,
+      "HUMSS": 0.5875,
+      "Other": 0.5664,
+      "STEM": 0.5532
+    }
+  },
+  "subset_scores": [
+    {
+      "subset": "Accounting",
+      "category": "HUMSS",
+      "accuracy": 0.56,
+      "correct": 56,
+      "total": 100
+    },
+    {
+      "subset": "Agricultural-Sciences",
+      "category": "Other",
+      "accuracy": 0.464,
+      "correct": 464,
+      "total": 1000
+    },
+    {
+      "subset": "Aviation-Engineering-and-Maintenance",
+      "category": "Applied Science",
+      "accuracy": 0.565,
+      "correct": 565,
+      "total": 1000
+    },
+    {
+      "subset": "Biology",
+      "category": "STEM",
+      "accuracy": 0.486,
+      "correct": 486,
+      "total": 1000
+    },
+    {
+      "subset": "Chemical-Engineering",
+      "category": "STEM",
+      "accuracy": 0.535,
+      "correct": 535,
+      "total": 1000
+    },
+    {
+      "subset": "Chemistry",
+      "category": "STEM",
+      "accuracy": 0.5567,
+      "correct": 334,
+      "total": 600
+    },
+    {
+      "subset": "Civil-Engineering",
+      "category": "STEM",
+      "accuracy": 0.508,
+      "correct": 508,
+      "total": 1000
+    },
+    {
+      "subset": "Computer-Science",
+      "category": "STEM",
+      "accuracy": 0.82,
+      "correct": 820,
+      "total": 1000
+    },
+    {
+      "subset": "Construction",
+      "category": "Other",
+      "accuracy": 0.478,
+      "correct": 478,
+      "total": 1000
+    },
+    {
+      "subset": "Criminal-Law",
+      "category": "HUMSS",
+      "accuracy": 0.42,
+      "correct": 84,
+      "total": 200
+    },
+    {
+      "subset": "Ecology",
+      "category": "STEM",
+      "accuracy": 0.608,
+      "correct": 608,
+      "total": 1000
+    },
+    {
+      "subset": "Economics",
+      "category": "HUMSS",
+      "accuracy": 0.6615,
+      "correct": 86,
+      "total": 130
+    },
+    {
+      "subset": "Education",
+      "category": "HUMSS",
+      "accuracy": 0.8,
+      "correct": 80,
+      "total": 100
+    },
+    {
+      "subset": "Electrical-Engineering",
+      "category": "STEM",
+      "accuracy": 0.417,
+      "correct": 417,
+      "total": 1000
+    },
+    {
+      "subset": "Electronics-Engineering",
+      "category": "Applied Science",
+      "accuracy": 0.651,
+      "correct": 651,
+      "total": 1000
+    },
+    {
+      "subset": "Energy-Management",
+      "category": "Applied Science",
+      "accuracy": 0.433,
+      "correct": 433,
+      "total": 1000
+    },
+    {
+      "subset": "Environmental-Science",
+      "category": "Applied Science",
+      "accuracy": 0.435,
+      "correct": 435,
+      "total": 1000
+    },
+    {
+      "subset": "Fashion",
+      "category": "Other",
+      "accuracy": 0.545,
+      "correct": 545,
+      "total": 1000
+    },
+    {
+      "subset": "Food-Processing",
+      "category": "Other",
+      "accuracy": 0.507,
+      "correct": 507,
+      "total": 1000
+    },
+    {
+      "subset": "Gas-Technology-and-Engineering",
+      "category": "Applied Science",
+      "accuracy": 0.457,
+      "correct": 457,
+      "total": 1000
+    },
+    {
+      "subset": "Geomatics",
+      "category": "Applied Science",
+      "accuracy": 0.529,
+      "correct": 529,
+      "total": 1000
+    },
+    {
+      "subset": "Health",
+      "category": "Other",
+      "accuracy": 0.73,
+      "correct": 73,
+      "total": 100
+    },
+    {
+      "subset": "Industrial-Engineer",
+      "category": "Applied Science",
+      "accuracy": 0.549,
+      "correct": 549,
+      "total": 1000
+    },
+    {
+      "subset": "Information-Technology",
+      "category": "STEM",
+      "accuracy": 0.78,
+      "correct": 780,
+      "total": 1000
+    },
+    {
+      "subset": "Interior-Architecture-and-Design",
+      "category": "Other",
+      "accuracy": 0.691,
+      "correct": 691,
+      "total": 1000
+    },
+    {
+      "subset": "Law",
+      "category": "HUMSS",
+      "accuracy": 0.584,
+      "correct": 584,
+      "total": 1000
+    },
+    {
+      "subset": "Machine-Design-and-Manufacturing",
+      "category": "Applied Science",
+      "accuracy": 0.572,
+      "correct": 572,
+      "total": 1000
+    },
+    {
+      "subset": "Management",
+      "category": "HUMSS",
+      "accuracy": 0.646,
+      "correct": 646,
+      "total": 1000
+    },
+    {
+      "subset": "Maritime-Engineering",
+      "category": "Applied Science",
+      "accuracy": 0.535,
+      "correct": 321,
+      "total": 600
+    },
+    {
+      "subset": "Marketing",
+      "category": "Other",
+      "accuracy": 0.835,
+      "correct": 835,
+      "total": 1000
+    },
+    {
+      "subset": "Materials-Engineering",
+      "category": "STEM",
+      "accuracy": 0.576,
+      "correct": 576,
+      "total": 1000
+    },
+    {
+      "subset": "Mechanical-Engineering",
+      "category": "STEM",
+      "accuracy": 0.519,
+      "correct": 519,
+      "total": 1000
+    },
+    {
+      "subset": "Nondestructive-Testing",
+      "category": "Applied Science",
+      "accuracy": 0.546,
+      "correct": 546,
+      "total": 1000
+    },
+    {
+      "subset": "Patent",
+      "category": "Other",
+      "accuracy": 0.5,
+      "correct": 50,
+      "total": 100
+    },
+    {
+      "subset": "Political-Science-and-Sociology",
+      "category": "HUMSS",
+      "accuracy": 0.7167,
+      "correct": 215,
+      "total": 300
+    },
+    {
+      "subset": "Psychology",
+      "category": "HUMSS",
+      "accuracy": 0.56,
+      "correct": 560,
+      "total": 1000
+    },
+    {
+      "subset": "Public-Safety",
+      "category": "Other",
+      "accuracy": 0.48,
+      "correct": 480,
+      "total": 1000
+    },
+    {
+      "subset": "Railway-and-Automotive-Engineering",
+      "category": "Applied Science",
+      "accuracy": 0.463,
+      "correct": 463,
+      "total": 1000
+    },
+    {
+      "subset": "Real-Estate",
+      "category": "Other",
+      "accuracy": 0.55,
+      "correct": 110,
+      "total": 200
+    },
+    {
+      "subset": "Refrigerating-Machinery",
+      "category": "Other",
+      "accuracy": 0.45,
+      "correct": 450,
+      "total": 1000
+    },
+    {
+      "subset": "Social-Welfare",
+      "category": "HUMSS",
+      "accuracy": 0.704,
+      "correct": 704,
+      "total": 1000
+    },
+    {
+      "subset": "Taxation",
+      "category": "HUMSS",
+      "accuracy": 0.44,
+      "correct": 88,
+      "total": 200
+    },
+    {
+      "subset": "Telecommunications-and-Wireless-Technology",
+      "category": "Applied Science",
+      "accuracy": 0.694,
+      "correct": 694,
+      "total": 1000
+    },
+    {
+      "subset": "Korean-History",
+      "category": "HUMSS",
+      "accuracy": 0.37,
+      "correct": 37,
+      "total": 100
+    },
+    {
+      "subset": "Math",
+      "category": "STEM",
+      "accuracy": 0.28,
+      "correct": 84,
+      "total": 300
+    }
+  ]
