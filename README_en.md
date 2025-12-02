@@ -54,8 +54,6 @@ This project aims to evaluate whether a small but strategically selected SFT dat
 
 ## Zero-shot Weak Subject Detection
 
-![Weak Subject Chart](images/weak_subject_chart.png)
-
 The baseline zero-shot accuracy was:
 
 | Metric | Score |
@@ -68,13 +66,12 @@ Weakest subjects included Math (28%), Korean-History (37%), Engineering (~41–5
 
 ## Sampling Strategy
 
-![Sampling Strategy](images/sampling_strategy.png)
-
+```
 | Group | Ratio | Description |
 |-------|--------|-------------|
 | Weak subjects | 70% (350 samples) | Based on error frequency |
 | All subjects | 30% (150 samples) | ~3 per subject to prevent forgetting |
-
+```
 ### Dataset Summary  
 - **Total samples:** 500  
 - **Format:** Alpaca (instruction / input / output)  
@@ -84,32 +81,25 @@ Weakest subjects included Math (28%), Korean-History (37%), Engineering (~41–5
 
 # 5. Alpaca SFT Dataset Structure
 
-![Alpaca Structure](images/alpaca_structure.png)
-
 Each SFT item follows:
 
 instruction: "Solve the following KMMLU problem step-by-step."
 input: "Question + Options"
 output: "Chain-of-thought + final answer"
 
-yaml
-코드 복사
-
 ---
 
 # 6. LoRA Fine-tuning
 
-![LoRA Training](images/lora_training.png)
-
 **Training Parameters**
-
+```
 | Parameter | Value |
 |-----------|--------|
 | LoRA r | 16 |
 | Epochs | 3 |
 | Learning Rate | 2e-4 |
 | Trainable Params | 0.55% (~40M) |
-
+```
 ### Training Curve
 
 ![Training Loss](images/training_loss.png)
@@ -122,30 +112,27 @@ yaml
 
 # 7. Evaluation (KMMLU Benchmark)
 
-![Evaluation](images/evaluation.png)
-
 Executed using: **evaluate_sft_model.py**
-
+```
 | Model | Accuracy |
 |--------|------------|
 | Zero-shot | 56.25% |
 | LoRA SFT (Strategic) | **57.58%** |
-
+```
 **Overall Gain:** +1.33%p
 
 ---
 
 # Subject-level Improvements
 
-![Subject Improvement](images/subject_improvement.png)
-
+```
 | Category | Gain |
 |----------|------|
 | Korean-History | **+8%p** |
 | HUMSS | +3.21%p |
 | Other | +8.78%p |
 | Math | +0.33%p |
-
+```
 ---
 
 # 8. Analysis
