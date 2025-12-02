@@ -16,9 +16,8 @@ All experiments were independently designed and implemented.
 
 #  1. Overview
 
-
-
-This project aims to evaluate whether a small but strategically selected SFT dataset can improve reasoning performance across 45 diverse KMMLU subject categories.
+This project evaluates SKT’s open LLM **A.X 4.0-Light**  using the **KMMLU Light benchmark (44 subjects)**  
+to analyze performance changes across Zero-shot → CoT → Few-shot → SFT.
 
 ---
 ```
