@@ -40,7 +40,7 @@ KMMLU_myproject/
 │   └── qwen_zero_shot.py                  # Baseline comparison (Qwen2.5-7B-Instruct)
 │
 └── results/
-    └── README_results.md                  # Text-based result summary
+    └── KMMLU_Wrapup_Report_KR_EN.md       # Final Summary (KOR-ENG version)
 ```
 ---
 
