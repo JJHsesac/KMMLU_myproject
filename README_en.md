@@ -21,7 +21,7 @@ All experiments were independently designed and implemented.
 This project aims to evaluate whether a small but strategically selected SFT dataset can improve reasoning performance across 45 diverse KMMLU subject categories.
 
 ---
-
+'''
 # 2. Repository Structure
 
 📁 KMMLU_myproject/
@@ -33,9 +33,8 @@ This project aims to evaluate whether a small but strategically selected SFT dat
 ├── kmmlu_ax_4.0_light_zeroshot_cot.py
 └── qwen_zero_shot.py
 
-yaml
-코드 복사
 
+'''
 ---
 
 # 3. Experiment Design
