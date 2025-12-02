@@ -1,189 +1,155 @@
-# KMMLU Fine-tuning Project  
-**Strategic Sampling + LoRA (PEFT)**  
-Model: **SKT/A.X.4.0-Light**
+# 1. Project Overview
 
-This repository documents a personal experiment exploring how to improve KMMLU performance using:
+This project evaluates SKT’s open-source LLM **A.X 4.0-Light** using **KMMLU Light (44 subjects)** to measure performance changes across:
 
-- Zero-shot baseline evaluation  
-- Weak-subject strategic sampling  
-- Alpaca-format SFT dataset creation  
-- LoRA fine-tuning (PEFT)  
-- Full KMMLU benchmark evaluation  
+- Zero-shot
+- Zero-shot CoT
+- 5-shot
+- Strategic Supervised Fine-Tuning (SFT, PEFT-based)
 
-All experiments were independently designed and implemented.
+During the experiments, Korean History and Mathematics were identified as the **two weakest subjects**, significantly lowering the overall average score.
+
+Therefore, this project applies **strategic SFT on the bottom 30% subjects**, and additionally analyzes the Korean History dev/test patterns.  
+The insights from this analysis were later extended to the design of a personal **Korean History RAG-based learning assistant**.
+
+The main purpose of the strategic SFT experiment is to examine whether:
+
+- **With extremely limited data**,  
+- **Targeted fine-tuning on weak subjects**  
+can lead to observable performance improvements.
 
 ---
 
-#  1. Overview
-
-This project evaluates SKT’s open LLM **A.X 4.0-Light**  using the **KMMLU Light benchmark (44 subjects)**  
-to analyze performance changes across Zero-shot → CoT → Few-shot → SFT.
-
+# 2. Repository Structure
 ---
 ```
 KMMLU_myproject/
 │
-├── README_KR.md             # Korean version
+├── README.md             # Korean version
 ├── README_en.md          # English version
 │
 ├── data/
-│   └── kmmlu_sft_strategic_500.jsonl      # result
+│   └── kmmlu_sft_strategic_500.jsonl      # Strategic SFT dataset (500 samples)
 │
 ├── scripts/
-│   ├── prepare_sft_data_strategic.py      # Strategic SFT data creation
-│   ├── finetune_lora_peft.py              # PEFT based fine-tuning (not LoRA)
-│   ├── evaluate_sft_model.py              # Evaluation
-│   ├── kmmlu_ax_4.0_light_zeroshot.py     # Zero-shot
-│   ├── kmmlu_ax_4.0_light_zeroshot_cot.py # CoT
-│   └── qwen_zero_shot.py                  # Model comparison (Qwen2.5-7B)
+│   ├── prepare_sft_data_strategic.py      # Strategic SFT dataset generation
+│   ├── finetune_lora_peft.py              # PEFT-based fine-tuning (not LoRA)
+│   ├── evaluate_sft_model.py              # KMMLU Light evaluation
+│   ├── kmmlu_ax_4.0_light_zeroshot.py     # Zero-shot evaluation
+│   ├── kmmlu_ax_4.0_light_zeroshot_cot.py # Zero-shot + CoT evaluation
+│   └── qwen_zero_shot.py                  # Baseline comparison (Qwen2.5-7B-Instruct)
 │
 └── results/
-    └── README_results.md                  # Wrapup Report 
+    └── README_results.md                  # Text-based result summary
 ```
 ---
 
-# 3. Experiment Design
+# 3. Objectives
+The project aims to:
 
-## ✔ Model  
-- **Base Model:** SKT/A.X.4.0-Light  
-- **Method:** LoRA (PEFT)  
-- **Trainable Params:** ~40M (0.55%)  
-- **Epochs:** 3  
-- **Learning Rate:** 2e-4  
+✔ 1) Analyze performance on KMMLU Light
+- Evaluate SKT A.X 4.0-Light on 44 KMMLU subjects to measure performance across Zero-shot → CoT → 5-shot → SFT.
 
----
+✔ 2) Verify whether strategic SFT improves weak subjects
+Instead of fine-tuning on all subjects, only the bottom 30% subjects are selected to investigate whether low-resource targeted SFT yields meaningful gains.
 
-# Pipeline Diagram
+✔ 3) Build a reproducible KMMLU experiment pipeline
+- Generate evaluation files (JSON/CSV)
+- Set up PEFT-based low-cost training
+- Document a reusable pipeline
 
----
+# 4. Dataset & Benchmark
+📌 Benchmark Dataset
+- KMMLU Light  44 subjects, ~45 questions each
+- Korean multi-task benchmark
 
-# 4. Strategic Sampling
+📌 Evaluated Model (LLM)
+- SKT/A.X 4.0-Light
+- Initial baseline comparisons:
+  Llama-3.2-Korean-Bllossom-3B
+  Qwen2.5-7B-Instruct
 
-## Zero-shot Weak Subject Detection
+- A.X 4.0-Light achieved the strongest Zero-shot baseline → selected for full evaluation
 
-The baseline zero-shot accuracy was:
+📌 Target Subjects
+- Focus on low-performing subjects, especially:  Korean History  Mathematics
 
-| Metric    | Score      |
-|-----------|------------|
-| Zero-shot | **56.25%** |
+📌 SFT Data Conditions
+- dev split contains only 1–3 samples per subject
 
-Weakest subjects included Math (28%), Korean-History (37%), Engineering (~41–50%), Taxation, and Criminal-Law.
+- Korean History dev contains only 1 sample
+→ Ideal environment for testing SFT under extreme low-resource conditions
 
----
+# 5. Experiment Pipeline
+**Zero-shot / Zero-shot CoT**
+- kmmlu_ax_4.0_light_zeroshot.py
+- kmmlu_ax_4.0_light_zeroshot_cot.py
+**Strategic SFT Data Preparation**
+- prepare_sft_data_strategic.py
+- Select bottom 30% subjects → convert to Alpaca-style JSONL (500 samples)
 
-## Sampling Strategy
+**PEFT-based SFT Training**
+- finetune_lora_peft.py
+- (LoRA was not applicable → replaced with PEFT fine-tuning) r=16 / 3 epochs / LR=2e-4
+- Trainable parameters ≈ 40M (0.55%)
 
-```
-| Group         | Ratio             | Description                          |
-|---------------|-------------------|--------------------------------------|
-| Weak subjects | 70% (350 samples) | Based on error frequency             |
-| All subjects  | 30% (150 samples) | ~3 per subject to prevent forgetting |
-```
-### Dataset Summary  
-- **Total samples:** 500  
-- **Format:** Alpaca (instruction / input / output)  
-- **File:** `kmmlu_sft_strategic_500.jsonl`
+**Post-SFT Evaluation**
+- evaluate_sft_model.py
+- Evaluate SFT model vs. Zero-shot baselines
 
----
+# 6. Main Results
+**1) Zero-shot**
+- Moderate performance across subjects
+- Korean History extremely low (~35–40%)
 
-# 5. Alpaca SFT Dataset Structure
+**2) Zero-shot + CoT**
+- Improvements in reasoning-heavy subjects
+- Korean History shows degradation due to hallucination
 
-Each SFT item follows:
+**3) 5-shot**
+More stable improvements
+Limited by small number of available few-shot samples
 
-instruction: "Solve the following KMMLU problem step-by-step."
-input: "Question + Options"
-output: "Chain-of-thought + final answer"
+**4) Strategic SFT (Low-Resource)**
+With Korean History dev = 1 sample
+→ Extremely high risk of overfitting
+→ Minimal performance improvement on test
 
----
+**Conclusion**
+SFT with 1–3 samples per subject rarely produces generalizable gains.
 
-# 6. LoRA Fine-tuning
+**7. Conclusions & Limitations**
+✔ Strategic SFT is reasonable
+Targeting weak subjects is a valid research direction.
 
-**Training Parameters**
-```
-| Parameter        | Value        |
-|------------------|--------------|
-| LoRA r           | 16           |
-| Epochs           | 3            |
-| Learning Rate    | 2e-4         |
-| Trainable Params | 0.55% (~40M) |
-```
-### Training Curve
+✔ But KMMLU Light has extremely limited data
+dev Korean History: 1 sample
 
+test Korean History: 106 samples
+→ Strong mismatch and overfitting risk
 
-- Loss improved from **2.45 → 0.30**  
-- Stable gradients  
-- No overfitting observed  
+✔ Improvement was minimal
+Training becomes memorization rather than generalization.
 
----
+# 8. Future Directions
+1) Expand to KMMLU Full
+Larger datasets enable more meaningful SFT.
 
-# 7. Evaluation (KMMLU Benchmark)
+2) Integrate with Korean History RAG
+Concepts → RAG
 
-Executed using: **evaluate_sft_model.py**
-```
-| Model                | Accuracy   |
-|----------------------|------------|
-| Zero-shot            | 56.25%     |
-| LoRA SFT (Strategic) | **57.58%** |
-```
-**Overall Gain:** +1.33%p
+Problem solving → SFT → Build a hybrid Korean History tutor
 
----
+3) Data Augmentation
+- For low-resource subjects:
+- Paraphrasing
+- Distractor generation
+- Synthetic Q&A creation
 
-# Subject-level Improvements
+# 9. Contribution
+This repository is a personal research project intended to serve as a reference for beginners working with KMMLU-based evaluations.
 
-```
-| Category       | Gain     |
-|----------------|----------|
-| Korean-History | **+8%p** |
-| HUMSS          | +3.21%p  |
-| Other          | +8.78%p  |
-| Math           | +0.33%p  |
-```
----
+10. License
+KMMLU Light data: Follow SKT open license
 
-# 8. Analysis
-
-### ✔ What worked
-- Weak-subject sampling improved humanities categories  
-- LoRA training converged cleanly  
-- Coverage across all 45 subjects prevented catastrophic forgetting  
-
-### ✖ Limitations
-- Only 500 SFT samples (too small for 7B models)  
-- Some subjects had very few training examples (e.g., Korean-History: 1 item)  
-- CoT template mismatch across domains  
-- Math improved minimally due to limited domain-specific reasoning  
-
----
-
-# 9. Reproducibility
-
-To reproduce results:
-
-1. Zero-shot evaluation
-python kmmlu_ax_4.0_light_zeroshot.py
-
-2. Create SFT dataset
-python prepare_sft_data_strategic.py
-
-3. Fine-tune using LoRA
-python finetune_lora_peft.py
-
-4. Evaluate fine-tuned model
-python evaluate_sft_model.py
-
----
-
-# 10. Future Work
-
-- Expand SFT dataset to 1k–2k samples  
-- Develop Math-specific CoT templates  
-- Evaluate CoT-free SFT  
-- Use few-shot prompts during evaluation  
-- Consider Q-LoRA for faster training at larger batch sizes  
-
----
-
-# Contact  
-
-Feel free to open an issue for further questions.
+Code: MIT License
