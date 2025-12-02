@@ -21,14 +21,24 @@ to analyze performance changes across Zero-shot → CoT → Few-shot → SFT.
 
 ---
 ```
-📁 KMMLU_myproject
+KMMLU_myproject/
 │
-├── 📄 prepare_sft_data_strategic.py
-├── 📄 finetune_lora_peft.py
-├── 📄 evaluate_sft_model.py
-├── 📄 kmmlu_ax_4.0_light_zeroshot.py
-├── 📄 kmmlu_ax_4.0_light_zeroshot_cot.py
-└── 📄 qwen_zero_shot.py
+├── README.md             # 한국어
+├── README_en.md          # 영어
+│
+├── data/
+│   └── kmmlu_sft_strategic_500.jsonl      # ⭐ 유일한 데이터 공개 (마님의 기여물)
+│
+├── scripts/
+│   ├── prepare_sft_data_strategic.py      # 전략적 SFT 데이터 생성
+│   ├── finetune_lora_peft.py              # LoRA 아닌 PEFT 기반 파인튜닝 코드 (정확)
+│   ├── evaluate_sft_model.py              # 평가
+│   ├── kmmlu_ax_4.0_light_zeroshot.py     # Zero-shot
+│   ├── kmmlu_ax_4.0_light_zeroshot_cot.py # CoT
+│   └── qwen_zero_shot.py                  # 비교 모델
+│
+└── results/
+    └── README_results.md                  # 텍스트 기반 결과 요약 
 ```
 ---
 
