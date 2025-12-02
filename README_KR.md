@@ -25,12 +25,22 @@ Zero-shot → CoT → Few-shot → SFT 순으로 성능 변화를 측정한 실�
 ```
 KMMLU_myproject/
 │
-├── prepare_sft_data_strategic.py      # 성능 낮은 과목만 선별하여 SFT 데이터 생성
-├── finetune_lora_peft.py              # LoRA 기반 파인튜닝 실행 스크립트
-├── evaluate_sft_model.py              # SFT 모델 성능 평가
-├── kmmlu_ax_4.0_light_zeroshot.py     # Zero-shot 평가
-├── kmmlu_ax_4.0_light_zeroshot_cot.py # Zero-shot + CoT 평가
-└── qwen_zero_shot.py                  # 비교용 Qwen 모델 평가
+├── README.md             # 한국어
+├── README_en.md          # 영어
+│
+├── data/
+│   └── kmmlu_sft_strategic_500.jsonl      # 결과 (전략적 SFT)
+│
+├── scripts/
+│   ├── prepare_sft_data_strategic.py      # 전략적 SFT 데이터 생성
+│   ├── finetune_lora_peft.py              # PEFT 기반 파인튜닝 코드 (LoRA 아님)
+│   ├── evaluate_sft_model.py              # 평가
+│   ├── kmmlu_ax_4.0_light_zeroshot.py     # Zero-shot
+│   ├── kmmlu_ax_4.0_light_zeroshot_cot.py # CoT
+│   └── qwen_zero_shot.py                  # 비교 모델 (Qwen2.5-7B-Instruct)
+│
+└── results/
+    └── README_results.md                  # 랩업리포트
 
 ```
 # 3. 실험 목표
