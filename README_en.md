@@ -14,9 +14,9 @@ All experiments were independently designed and implemented.
 
 ---
 
-# 📌 1. Overview
+#  1. Overview
 
-![Project Overview](images/project_overview.png)
+
 
 This project aims to evaluate whether a small but strategically selected SFT dataset can improve reasoning performance across 45 diverse KMMLU subject categories.
 
@@ -46,8 +46,6 @@ This project aims to evaluate whether a small but strategically selected SFT dat
 
 # Pipeline Diagram
 
-![Pipeline Flow](images/pipeline_flow.png)
-
 ---
 
 # 4. Strategic Sampling
@@ -56,8 +54,8 @@ This project aims to evaluate whether a small but strategically selected SFT dat
 
 The baseline zero-shot accuracy was:
 
-| Metric | Score |
-|--------|--------|
+| Metric    | Score      |
+|-----------|------------|
 | Zero-shot | **56.25%** |
 
 Weakest subjects included Math (28%), Korean-History (37%), Engineering (~41–50%), Taxation, and Criminal-Law.
@@ -67,10 +65,10 @@ Weakest subjects included Math (28%), Korean-History (37%), Engineering (~41–5
 ## Sampling Strategy
 
 ```
-| Group | Ratio | Description |
-|-------|--------|-------------|
-| Weak subjects | 70% (350 samples) | Based on error frequency |
-| All subjects | 30% (150 samples) | ~3 per subject to prevent forgetting |
+| Group         | Ratio             | Description                          |
+|---------------|-------------------|--------------------------------------|
+| Weak subjects | 70% (350 samples) | Based on error frequency             |
+| All subjects  | 30% (150 samples) | ~3 per subject to prevent forgetting |
 ```
 ### Dataset Summary  
 - **Total samples:** 500  
@@ -93,16 +91,15 @@ output: "Chain-of-thought + final answer"
 
 **Training Parameters**
 ```
-| Parameter | Value |
-|-----------|--------|
-| LoRA r | 16 |
-| Epochs | 3 |
-| Learning Rate | 2e-4 |
+| Parameter        | Value        |
+|------------------|--------------|
+| LoRA r           | 16           |
+| Epochs           | 3            |
+| Learning Rate    | 2e-4         |
 | Trainable Params | 0.55% (~40M) |
 ```
 ### Training Curve
 
-![Training Loss](images/training_loss.png)
 
 - Loss improved from **2.45 → 0.30**  
 - Stable gradients  
@@ -126,12 +123,12 @@ Executed using: **evaluate_sft_model.py**
 # Subject-level Improvements
 
 ```
-| Category | Gain |
-|----------|------|
+| Category       | Gain     |
+|----------------|----------|
 | Korean-History | **+8%p** |
-| HUMSS | +3.21%p |
-| Other | +8.78%p |
-| Math | +0.33%p |
+| HUMSS          | +3.21%p  |
+| Other          | +8.78%p  |
+| Math           | +0.33%p  |
 ```
 ---
 
@@ -165,9 +162,6 @@ python finetune_lora_peft.py
 
 4. Evaluate fine-tuned model
 python evaluate_sft_model.py
-
-yaml
-코드 복사
 
 ---
 
