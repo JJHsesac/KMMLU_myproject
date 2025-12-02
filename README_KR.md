@@ -29,7 +29,7 @@ KMMLU_myproject/
 ├── README_en.md          # 영어
 │
 ├── data/
-│   └── kmmlu_sft_strategic_500.jsonl      # 전략적 SFT 데이터 (500 샘플)
+│   └── kmmlu_sft_strategic_500.jsonl      # 전략적 SFT 결과 (500 샘플)
 │
 ├── scripts/
 │   ├── prepare_sft_data_strategic.py      # 전략적 SFT 데이터 생성
@@ -40,7 +40,7 @@ KMMLU_myproject/
 │   └── qwen_zero_shot.py                  # Qwen2.5-7B-Instruct 비교 실험
 │
 └── results/
-    └── README_results.md                  # 결과 요약 (그래프 없이 텍스트 정리)
+    └── KMMLU_Wrapup_Report_KR_EN.md       # 최종 결과 요약 
 ```
 ---
 **3. 실험 목표**
